@@ -1,4 +1,5 @@
 <template>
+ <div>
   <Header type="white" class="edit-menu">
     <template #pageTitle>
       <div class="page-title">
@@ -117,6 +118,7 @@
       </a-drawer>
     </div>
   </div>
+ </div>
 </template>
 
 <script>
