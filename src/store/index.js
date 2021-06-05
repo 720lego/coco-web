@@ -15,6 +15,7 @@ const store = createStore({
 
 // 监听事件
 window.addEventListener('message',(e) => {
+  console.log('-------------->>>>>>>>>>  '+  JSON.stringify(e.data.data))
   // 不接受消息源来自于当前窗口的消息
   if (e.source === window || e.data === 'loaded') {
     return

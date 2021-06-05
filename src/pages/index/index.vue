@@ -55,7 +55,7 @@
 import Header from '@/components/header';
 import {reactive, toRefs} from 'vue';
 import { useForm } from '@ant-design-vue/use';
-import {market} from '@/api';
+import {market,project} from '@/api';
 import {useRouter} from 'vue-router';
 import { message } from 'ant-design-vue';
 
@@ -106,32 +106,32 @@ export default {
               path: '/dashboard',
             })
         }, 2000);
-        // state.creating = true;
-        // try {
-        //   const data = await project.createProject({
-        //     pageConfig: {
-        //       config: {
-        //         templateId: state.pageInfo.id,
-        //         templateGit: state.pageInfo.gitUrl,
-        //         templateName: state.pageInfo.name,
-        //         projectName: pageState.projectName || '未命名的页面',
-        //         gitName: pageState.gitName,
-        //         templateVersion: state.pageInfo.version,
-        //       },
-        //       userSelectComponents: [],
-        //       components: [],
-        //     }
-        //   });
-        //   state.creating = false;
-        //   router.push({
-        //     path: '/edit',
-        //     query: {
-        //       id: data.result.id,
-        //     }
-        //   })
-        // } catch (e) {
-        //   state.creating = false;
-        // }
+        state.creating = true;
+        try {
+          const data = await project.createProject({
+            pageConfig: {
+              config: {
+                templateId: state.pageInfo.id,
+                templateGit: state.pageInfo.gitUrl,
+                templateName: state.pageInfo.name,
+                projectName: pageState.projectName || '未命名的页面',
+                gitName: pageState.gitName,
+                templateVersion: state.pageInfo.version,
+              },
+              userSelectComponents: [],
+              components: [],
+            }
+          });
+          state.creating = false;
+          router.push({
+            path: '/edit',
+            query: {
+              id: data.result.id,
+            }
+          })
+        } catch (e) {
+          state.creating = false;
+        }
       });
     }
     const { resetFields, validate, validateInfos } = useForm(pageState, rulesRef);
